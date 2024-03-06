@@ -1,0 +1,16 @@
+version: '3.5'
+
+serviced:
+  db:
+    container_name: dbOfPeaople
+    ports:
+      -"5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=db
+    volimes:
+# позволяет скачать данные в докер
+      - ./pgdata:/var/lib/postgresql/data
+      - ./workers.sql:/docker-entrypoint-initdb.d/workers.sql      
+    image: postgres:16.2

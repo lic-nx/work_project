@@ -1,16 +1,30 @@
-version: '3.5'
+version: "3.4"
 
-serviced:
+services:
+
   db:
-    container_name: dbOfPeaople
+    container_name: ${DB_CONTAINER_NAME}
+    image: postgres:12
+    env_file:
+      - .env
+    restart: unless-stopped
+    volumes:
+      - triolbackend:/var/lib/postgresql/data
     ports:
-      -"5432:5432"
+      - ${POSTGRES_PORT}:5432
+
+  app:
+    build: ""
+    container_name: triolbackend
+    env_file:
+      - .env
+    command: bash -c "cd src && uvicorn app:app --host 0.0.0.0 --port 8000 --reload"
+    volumes:
+      - .:/src
     environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_USER=admin
-      - POSTGRES_DB=db
-    volimes:
-# позволяет скачать данные в докер
-      - ./pgdata:/var/lib/postgresql/data
-      - ./workers.sql:/docker-entrypoint-initdb.d/workers.sql      
-    image: postgres:16.2
+    - PYTHONUNBUFFERED=0
+    ports:
+      - "8000:8000"
+
+volumes:
+  triolbackend:

@@ -35,30 +35,30 @@ from sqlalchemy.orm import relationship
 
 
 class Employee(Base):
-    # __tablename__ = "workers"
-    # id = Column(Integer, primary_key=True, unique=True)
-    # full_name = Column(String, default="")
-    # post = Column(String, default="")
-    # personal_phone = Column(String, default="")
-    # mail = Column(String, default="")
-    # work_phone = Column(String, default="")
-    # internal_phone = Column(String, default="")
-    # telegramm = Column(String, default="")
-    # skype = Column(String, default="")
-    # bitrix24 = Column(String, default="")
-    # division = Column(String, default="")
-    # birthday = Column(DateTime, default="")
-    # personal_photo =Column(String, default="")
     __tablename__ = "workers"
     id = Column(Integer, primary_key=True, unique=True)
-    name           =Column(String)
-    last_name      =Column(String)
-    second_name    =Column(String)
-    active         =Column(Boolean)
-    work_position  =Column(String)
-    last_login     =Column(String)
-    date_register  =Column(String)
-    personal_photo =Column(String)
+    full_name = Column(String, default="")
+    post = Column(String, default="")
+    personal_phone = Column(String, default="")
+    mail = Column(String, default="")
+    work_phone = Column(String, default="")
+    internal_phone = Column(String, default="")
+    telegramm = Column(String, default="")
+    skype = Column(String, default="")
+    bitrix24 = Column(String, default="")
+    division = Column(String, default="")
+    birthday = Column(DateTime, default="")
+    personal_photo =Column(String, default="")
+    # __tablename__ = "workers"
+    # id = Column(Integer, primary_key=True, unique=True)
+    # name           =Column(String)
+    # last_name      =Column(String)
+    # second_name    =Column(String)
+    # active         =Column(Boolean)
+    # work_position  =Column(String)
+    # last_login     =Column(String)
+    # date_register  =Column(String)
+    # personal_photo =Column(String)
 
 # в базе должны быть такие же столбцы
 

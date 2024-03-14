@@ -40,3 +40,24 @@ class EmployeeRepositoriy:
                 res = "cant add."
             session.commit()
         return res
+    
+    def remove_employee(self, id: int) -> str:
+        res = "creatr"
+        with self.get_db() as session:
+            result = session.execute(
+                select(self.base_model)
+                .where(self.base_model.id == id)
+            )
+            client = result.scalars().first()
+            # если нет объекта то добавлем 
+            if not client:
+                result = session.execute(
+                    delete(self.base_model)
+                    .where(self.base_model.id == id)
+                    # .returning(*self.base_model.__table__.c)
+                )
+                res = "remove"
+            else : 
+                res = "id is not in table"
+            session.commit()
+        return res

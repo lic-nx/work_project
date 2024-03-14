@@ -8,7 +8,7 @@ from depends import get_employee_service
 
 router = APIRouter(prefix="/main", tags=["main"])
 
-@router.get("/hello", 
+@router.get("/take_all_employee", 
     responses={400: {"description": "Bad request"}},
     description="Получение всех сотрудников",
     response_model= EmployeeResponseSchema
@@ -23,7 +23,7 @@ async def get_all_employee(request: Request,)-> JSONResponse:
     }
 
 
-@router.post("/add", 
+@router.post("/add_employee", 
     responses={400: {"description": "Bad request"}},
     description="добавить сотрудника",
 )
@@ -43,8 +43,16 @@ from sqlalchemy import Column, BIGINT, VARCHAR
 
 
 
-@router.get("/users")
-def get_users()-> JSONResponse:
-    pass
+@router.post("/remove_users",
+    responses={400: {"description": "Bad request"}},
+    description="добавить сотрудника",)
+def remove_users(id: int,)-> JSONResponse:
+    service = get_employee_service()
+    response = service.remove_employee(id)
+    return {
+        "ok": True,
+        "count": len(response),
+        "result": response
+    }
 
 

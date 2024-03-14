@@ -18,3 +18,11 @@ class EmployeeService:
         except:
             return "err to add"
         return employee
+
+
+    def remove_employee(self, id: int)->str:
+        try:
+            employee = self.employee_repository.remove_employee(id)
+        except:
+            return "err to remove"
+        return employee
